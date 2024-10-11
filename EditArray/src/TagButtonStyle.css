@@ -1,0 +1,14 @@
+.btnStyle{
+    color:aliceblue;
+    background-color:#521d83;
+    border-radius: 15px;
+    margin: 5px;
+    padding: 7px;
+    border: none;
+    box-shadow: 3px 4px 7px rgba(0,0,0,0.4);
+    transition: all 0.3s;
+}
+.btnStyle:hover{
+    background-color: #2a1042;
+    cursor:pointer;
+}
