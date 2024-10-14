@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: "Cairo", sans-serif;
+    
+}
+#star{
+    color: gold;
+    margin:10px 5px ;
+}

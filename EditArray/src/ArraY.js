@@ -1,7 +1,5 @@
 import { useState } from "react";
-
 let newID = 4;
-
 export default function ArraY() {
   const [Inputs, setInputs] = useState("");
 
@@ -18,18 +16,19 @@ export default function ArraY() {
           onClick={() => {
             deletbtn(el.id);
           }}
-        >Delet
+        >
+          Delet
         </button>
         <button
           onClick={() => {
             Edittbtn(el.id);
           }}
-        >Edit
+        >
+          Edit
         </button>
       </li>
     );
   });
-
   function handelAdd() {
     setelement([...element, { id: newID, name: Inputs }]);
     newID++;
@@ -44,9 +43,9 @@ export default function ArraY() {
   function Edittbtn(id) {
     const newelement = element.map((el) => {
       if (el.id === id) {
-        let theElementEdited ={...element,name: el.name + " 23"}
-        return theElementEdited; 
-      }else{
+        let theElementEdited = { ...element, name: el.name + " 23" };
+        return theElementEdited;
+      } else {
         return el;
       }
     });
