@@ -16,9 +16,15 @@ export default function ArraY() {
 
   function handelsubmet(e) {
     e.preventDefault();
-    setmodel(<Registered/>);
+    setmodel(<Registered  exit={setmodel} />);
+    if(inputs.Phone.length <10 || inputs.Phone.length >12 ){
+      setmodel(<Registered eroor={"phone Number Formate Is In Correct"} exit={setmodel} />);
+    }
+    if(inputs.Age <10 || inputs.Age >100){
+      setmodel(<Registered eroor={"The Age Is Naot Allowed"} exit={setmodel} />);
+    }
   }
-
+ 
   return (
     <body>
       <section className="w-full bg-[#161618] h-screen flex justify-center items-center ">
