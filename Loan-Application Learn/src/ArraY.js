@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./index.css";
 import Registered from "./components/Registered";
+import MyCompont from "./components/My Component";
 
 export default function ArraY() {
   const [model, setmodel] = useState("");
@@ -37,6 +38,16 @@ export default function ArraY() {
       setmodel(<Registered exit={handelExit} />);
     }
   }
+
+   function handelPhone(value){
+    setinputs({...inputs ,Phone:value})
+   }
+   function handelName(value){
+    setinputs({...inputs ,Name:value})
+   }
+   function handelAge(value){
+    setinputs({...inputs ,Age:value})
+   }
   return (
     <body>
       <section className="w-full bg-[#161618] h-screen flex justify-center items-center ">
@@ -45,26 +56,23 @@ export default function ArraY() {
             Requestion a Loan
           </h3>
           <form className="">
-            <label>Name</label>
-            <input
-              type="text"
-              placeholder="inter your name"
+          <MyCompont 
+              name={"Name"}
               value={inputs.Name}
-              onChange={(e) => setinputs({ ...inputs, Name: e.target.value })}
+              handelChange={handelName}
+              placeholder={"inter your name"}     
             />
-            <label>Phone number</label>
-            <input
-              type="number"
-              placeholder="01123456874"
+            <MyCompont 
+              name={"Phone Number"}
               value={inputs.Phone}
-              onChange={(e) => setinputs({ ...inputs, Phone: e.target.value })}
+              handelChange={handelPhone}     
+              placeholder={"01123456789"}     
             />
-            <label>Age</label>
-            <input
-              type="number"
-              placeholder="inter your Age"
+                <MyCompont 
+              name={"Age"}
               value={inputs.Age}
-              onChange={(e) => setinputs({ ...inputs, Age: e.target.value })}
+              handelChange={handelAge}     
+              placeholder={"inter your Age"}     
             />
             <label>Are You an employee</label>
             <input
