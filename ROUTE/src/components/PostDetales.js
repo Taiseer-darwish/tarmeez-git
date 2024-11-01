@@ -10,13 +10,15 @@ export default function PostDetales(){
     console.log(Posts);
 
     const Post = Posts.find((P) =>{
-        return P.id === PostId
+        return P.id === parseInt(PostId);
     });
 
     console.log(Post);
     return(
         <>
-      
+        <h1>Post Detals Page </h1>
+        <h1>{Post.title}</h1>
+        <p>{Post.body}</p>
         </>
     )
 }

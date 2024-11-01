@@ -6,7 +6,7 @@ export default function PostList() {
     const Posts =  useContext(PostContext)
     let PostData = Posts.map((post) => {
     return (
-    <Link key={post.id} to={"/postDetales/"}>
+    <Link key={post.id} to={`/postDetales/${post.id}`}>
       <div>
         <h1>{post.title}</h1>
       </div>
