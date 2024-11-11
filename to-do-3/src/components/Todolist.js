@@ -1,8 +1,7 @@
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
-import { useContext } from "react";
+import { useState , useContext ,useEffect } from "react";
 import { TodoContext } from "../Contexts/TodoContext";
 
 //Card
@@ -17,29 +16,31 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import ToDo from "./ToDo";
 
-
-
 export default function ToDoList() {
-
   const [input, setinput] = useState("");
-  
+
   const value = useContext(TodoContext);
   const todojsx = value.todos.map((el) => {
     return <ToDo key={el.id} todo={el} />;
   });
 
   function HandelAdd() {
-    value.settodos([
-        ...value.todos,{
-        id: uuidv4(),
-        content: input,
-        isEditing: true,
-        EditIcone: true,
-        checkIcone: false,
-      },
-    ]);
-    setinput("")
+    const NewTodo = {
+      id: uuidv4(),
+      content: input,
+      isEditing: true,
+      IsCompleted: false,
+    };
+    const updateNewTodo =[...value.todos, NewTodo];
+    value.settodos(updateNewTodo);
+    localStorage.setItem("todos" , JSON.stringify(updateNewTodo))
+    setinput("");
   }
+
+  useEffect(()=>{
+    const Storagetodo =JSON.parse(localStorage.getItem("todos"))
+    value.settodos(Storagetodo);
+  },[]);
 
   return (
     <>

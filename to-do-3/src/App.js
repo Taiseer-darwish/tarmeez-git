@@ -10,22 +10,19 @@ const initialToDo = [
     id: uuidv4(),
     content: "null",
     isEditing: true,
-    EditIcone: true,
-    checkIcone: false,
+    IsCompleted: false,
   },
   {
     id: uuidv4(),
     content: "null",
     isEditing: true,
-    EditIcone: true,
-    checkIcone: false,
+    IsCompleted: false,
   },
   {
     id: uuidv4(),
     content: "null",
     isEditing: true,
-    EditIcone: true,
-    checkIcone: false,
+    IsCompleted: false,
   },
 ];
 

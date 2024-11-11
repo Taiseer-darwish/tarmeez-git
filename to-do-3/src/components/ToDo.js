@@ -21,10 +21,11 @@ export default function ToDo({ todo }) {
   function ToggoleIcone() {
     const UPdatetodos = value.todos.map((el) => {
       if (el.id === todo.id) {
-        el.checkIcone = !el.checkIcone;
+        el.IsCompleted = !el.IsCompleted;
       }
       return el;
     });
+    localStorage.setItem("todos", JSON.stringify(UPdatetodos));
     value.settodos(UPdatetodos);
   }
 
@@ -35,6 +36,7 @@ export default function ToDo({ todo }) {
   // HandelYes(id)
   function HandelYes() {
     const NewElement = value.todos.filter((e) => e.id !== todo.id);
+    localStorage.setItem("todos", JSON.stringify(NewElement));
     value.settodos(NewElement);
     HandelNo();
   }
@@ -43,28 +45,42 @@ export default function ToDo({ todo }) {
     setDeelet("");
   }
 
-//--HandelEdit
+  //--HandelEdit
   function HandelEdit() {
     const updatedElements = value.todos.map((el) => {
       if (el.id === todo.id) {
-        return { ...todo, isEditing: false };
+        return { ...todo, isEditing: false, IsCompleted: false };
       } else {
         return el;
       }
     });
+    localStorage.setItem("todos", JSON.stringify(updatedElements));
     value.settodos(updatedElements);
   }
-    // // handleInputChange
-    // function handleInputChange(id, newValue) {
-    //   const updatedElements = value.todos.map((el) => {
-    //     if (el.id === id) {
-    //       return { ...el, content: newValue };
-    //     } else {
-    //       return el;
-    //     }
-    //   });
-    //   value.settodos(updatedElements);
-    // }
+  // handleInputChange
+  function handleInputChange(id, newValue) {
+    const updatedElements = value.todos.map((el) => {
+      if (el.id === id) {
+        return { ...el, content: newValue };
+      } else {
+        return el;
+      }
+    });
+    localStorage.setItem("todos", JSON.stringify(updatedElements));
+    value.settodos(updatedElements);
+  }
+  //  handleSave
+  function handleSave(id) {
+    const updatedElements = value.todos.map((el) => {
+      if (el.id === id) {
+        return { ...el, isEditing: true };
+      } else {
+        return el;
+      }
+    });
+    localStorage.setItem("todos", JSON.stringify(updatedElements));
+    value.settodos(updatedElements);
+  }
 
   return (
     <>
@@ -75,7 +91,7 @@ export default function ToDo({ todo }) {
               <i
                 onClick={ToggoleIcone}
                 class={
-                  todo.checkIcone
+                  todo.IsCompleted
                     ? "fa-regular fa-circle-check"
                     : "fa-regular fa-circle"
                 }
@@ -87,12 +103,18 @@ export default function ToDo({ todo }) {
                   {todo.content}
                 </Typography>
               ) : (
-                <input
-                type="text"
-                value={todo.content}
-                onChange={(e) => handleInputChange(todo.id, e.target.value)}
-                autoFocus
-              />
+                <div className=" flex items-center border-solid border-2 p-1">
+                  <input
+                    type="text"
+                    value={todo.content}
+                    onChange={(e) => handleInputChange(todo.id, e.target.value)}
+                    autoFocus
+                  />
+                  <i
+                    className="fa-regular fa-circle-check"
+                    onClick={() => handleSave(todo.id)}
+                  ></i>
+                </div>
               )}
             </Grid>
             <Grid item xs={2} className=" flex justify-end">
