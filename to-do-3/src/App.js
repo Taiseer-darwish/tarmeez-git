@@ -29,7 +29,7 @@ const initialToDo = [
 function App() {
   const [todos, settodos] = useState(initialToDo);
   return <>
- <div className=" bg-[#161618] h-full">
+ <div className=" bg-[#161618] h-screen ">
   <TodoContext.Provider value={{todos:todos , settodos:settodos}}>
   <ToDoList/>
   </TodoContext.Provider>

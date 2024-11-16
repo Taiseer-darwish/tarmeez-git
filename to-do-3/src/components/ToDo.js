@@ -92,8 +92,8 @@ export default function ToDo({ todo }) {
                 onClick={ToggoleIcone}
                 class={
                   todo.IsCompleted
-                    ? "fa-regular fa-circle-check"
-                    : "fa-regular fa-circle"
+                    ? "fa-regular fa-circle-check text-[#2ea050cb]"
+                    : "fa-regular fa-circle text-[#771717cb] " 
                 }
               ></i>
             </Grid>
@@ -111,15 +111,15 @@ export default function ToDo({ todo }) {
                     autoFocus
                   />
                   <i
-                    className="fa-regular fa-circle-check"
+                    className="fa-regular fa-circle-check text-[#2ea050cb]"
                     onClick={() => handleSave(todo.id)}
                   ></i>
                 </div>
               )}
             </Grid>
             <Grid item xs={2} className=" flex justify-end">
-              <i className="fa-solid fa-pencil" onClick={HandelEdit}></i>
-              <i className="fa-solid fa-trash" onClick={HandelDelet}></i>
+              <i className= { todo.isEditing ? "fa-solid fa-pencil text-[#ffffff]" :"u" }onClick={HandelEdit}></i>
+              <i className="fa-solid fa-trash text-[#ffffff5d]" onClick={HandelDelet}></i>
             </Grid>
           </Grid>
         </CardContent>
