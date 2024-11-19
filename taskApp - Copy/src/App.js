@@ -8,19 +8,19 @@ import { v4 as uuidv4 } from "uuid";
 const initialToDo = [
   {
     id: uuidv4(),
-    content: "null",
+    content: "-",
     isEditing: true,
     IsCompleted: false,
   },
   {
     id: uuidv4(),
-    content: "null",
+    content: "-",
     isEditing: true,
     IsCompleted: false,
   },
   {
     id: uuidv4(),
-    content: "null",
+    content: "-",
     isEditing: true,
     IsCompleted: false,
   },
@@ -38,4 +38,3 @@ function App() {
 }
 
 export default App;
-

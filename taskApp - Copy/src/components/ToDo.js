@@ -90,7 +90,7 @@ export default function ToDo({ todo }) {
             <Grid item xs={1} className="  ">
               <i
                 onClick={ToggoleIcone}
-                class={
+                className={
                   todo.IsCompleted
                     ? "fa-regular fa-circle-check text-[#2ea050cb]"
                     : "fa-regular fa-circle text-[#771717cb] " 

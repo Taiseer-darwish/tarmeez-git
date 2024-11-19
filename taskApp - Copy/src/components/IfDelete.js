@@ -9,4 +9,3 @@ export default function IfDeelet({ No, Yes }) {
       </div>
     );
   }
-  

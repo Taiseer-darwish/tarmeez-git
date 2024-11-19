@@ -21,32 +21,40 @@ export default function ToDoList() {
   const [ButtonType, setButtonType] = useState("");
   const value = useContext(TodoContext);
 
-  const DoneTodos = value.todos.filter((el) => {
-    return el.IsCompleted;
-  });
-  const NotcompletedTodos = value.todos.filter((el) => {
-    return !el.IsCompleted;
-  });
-  let AllToDos = value.todos;
+  function filterTodos(boolean) {
+    return value.todos.filter((el) => el.IsCompleted === boolean);
+  }
+
+  // const [DoneTodos, setDoneTodos] = useState([]);
+  //const [NotcompletedTodos, setNotcompletedTodos] = useState([]);
+
+  // useEffect(() => {
+  //   const done = value.todos ? value.todos.filter((el) => el.IsCompleted) : [];
+  //   const notCompleted = value.todos
+  //     ? value.todos.filter((el) => !el.IsCompleted)
+  //     : [];
+  //   setDoneTodos(done);
+  //   setNotcompletedTodos(notCompleted);
+  // }, [value.todos]);
+
+ 
 
   //----------------------------------
   if (ButtonType === "Done") {
-    AllToDos = DoneTodos;
+   // AllToDos = DoneTodos;
   } else if (ButtonType === "NotComplet") {
-    AllToDos = NotcompletedTodos;
+  //  AllToDos = NotcompletedTodos;
   } else {
-    AllToDos = value.todos;
+   // AllToDos = value.todos;
   }
   //-------------------------
 
   //----------------------------------------
-  const todojsx = AllToDos.map((el) => {
-    return <ToDo key={el.id} todo={el} />;
-  });
+
   //-------------------------------
 
   function HandelAdd() {
-    if(input != ""){
+    if (input !== "") {
       const NewTodo = {
         id: uuidv4(),
         content: input,
@@ -62,14 +70,19 @@ export default function ToDoList() {
 
   useEffect(() => {
     const Storagetodo = JSON.parse(localStorage.getItem("todos"));
+    if (Storagetodo) {
+      value.settodos(Storagetodo);
 
-    value.settodos(Storagetodo);
-  }, []);
+    }
+  } ,[value]);
 
   return (
     <>
       <CssBaseline />
-      <Container maxWidth="lg" className=" relative p-5 text-white bg-[#161618] ">
+      <Container
+        maxWidth="lg"
+        className=" relative p-5 text-white bg-[#161618] "
+      >
         <Card
           sx={{
             minWidth: 275,
@@ -120,7 +133,7 @@ export default function ToDoList() {
                     setButtonType("ALL");
                   }}
                 >
-                  ALL ({AllToDos.length})
+                  ALL ()
                 </Button>
                 <Button
                   variant="outlined"
@@ -129,7 +142,7 @@ export default function ToDoList() {
                     setButtonType("Done");
                   }}
                 >
-                  Done ({DoneTodos.length})
+                  Done ()
                 </Button>
                 <Button
                   variant="outlined"
@@ -138,14 +151,16 @@ export default function ToDoList() {
                     setButtonType("NotComplet");
                   }}
                 >
-                  Not Complet ({NotcompletedTodos.length})
+                  Not Complet ()
                 </Button>
               </Stack>
 
               {/*<Buttons */}
 
               {/*ToDo*/}
-              {todojsx}
+              {filterTodos(true).map((el) => {
+                return <ToDo key={el.id} todo={el} />;
+              })}
               {/*ToDo*/}
             </div>
           </CardContent>
